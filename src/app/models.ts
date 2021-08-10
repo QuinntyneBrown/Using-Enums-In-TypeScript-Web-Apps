@@ -1,8 +1,6 @@
-
-
 export enum Status {
-    incomplete = "incomplete",
-    completed = 2,
+    incomplete = 0,
+    completed = 1
 }
 
 export type ToDo = {
