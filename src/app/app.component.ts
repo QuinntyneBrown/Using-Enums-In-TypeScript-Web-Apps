@@ -10,9 +10,9 @@ import "./app.component.scss";
 
 export class AppComponent extends HTMLElement {
     
-    private readonly _saveAction : Subject<void> = new Subject();
+    _saveAction : Subject<void> = new Subject();
 
-    private readonly _completeAction: Subject<ToDo> = new Subject(); 
+    _completeAction: Subject<ToDo> = new Subject(); 
     
     description: FormControl = new FormControl(null,[]);
 
