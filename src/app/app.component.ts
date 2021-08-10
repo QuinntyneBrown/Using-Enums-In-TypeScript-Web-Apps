@@ -1,22 +1,19 @@
-import { BehaviorSubject, Subject, tap, merge, startWith } from "rxjs";
+import { Subject, tap, merge, startWith } from "rxjs";
 import { html, render } from "lit";
 import { FormControl } from '@quinntyne/reactive-forms';
 import { repeat } from 'lit/directives/repeat';
 import { classMap } from 'lit/directives/class-map.js'
-import "./app.component.scss";
 import { Status, ToDo } from "./models";
 
 
+import "./app.component.scss";
+
 export class AppComponent extends HTMLElement {
     
-    private readonly _refresh$: BehaviorSubject<void> = new BehaviorSubject(null);
-
     private readonly _saveAction : Subject<void> = new Subject();
 
     private readonly _completeAction: Subject<ToDo> = new Subject(); 
     
-    
-
     description: FormControl = new FormControl(null,[]);
 
     toDos: ToDo[] = [];
@@ -58,18 +55,15 @@ export class AppComponent extends HTMLElement {
         `;
     }
 
-
     connectedCallback() {    
-        merge(
-            
+        merge(            
             this._saveAction
             .pipe(
                 tap(_ => {
                     this.toDos.push({
                         description: this.description.value,
                         status: Status.incomplete
-                    });
-                    
+                    });                    
                     this.description.setValue(null);
                 })
                 ), 
@@ -80,7 +74,7 @@ export class AppComponent extends HTMLElement {
         )
         .pipe(
             startWith(true),
-            tap(x => render(this.template, this))
+            tap(_ => render(this.template, this))
         ).subscribe();         
     }    
 }
