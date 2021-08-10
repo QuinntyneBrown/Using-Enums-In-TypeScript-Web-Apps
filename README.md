@@ -1,1 +1,1 @@
-# Using-Enums-In-TypeScript-Web-Apps
+# Using Enums in TypeScript Web Apps
